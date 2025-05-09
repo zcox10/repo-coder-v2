@@ -142,13 +142,18 @@ class FilePathBuilder:
         return out_path
 
     @staticmethod
-    def create_scores_path(model_name: str, vectorizer: str) -> str:
+    def create_scores_path(
+        model_name: str,
+        vectorizer: str,
+        benchmark: str,
+        mode: str,
+        window_size: int,
+        slice_size: int,
+    ) -> str:
         """
         Constructs a file path for storing the final prediction scores.
         """
         model_suffix = model_name.split("/")[-1]  # e.g., "codegen-350M-mono"
-        out_path = (
-            f"{Constants.base_predictions_dir}/scores/{model_suffix}-{vectorizer}-scores.jsonl"
-        )
+        out_path = f"{Constants.base_predictions_dir}/scores/{model_suffix}-{vectorizer}-{benchmark}-{mode}-ws-{window_size}-ss-{slice_size}-scores.jsonl"
         FilePathBuilder.create_dir(out_path)
         return out_path

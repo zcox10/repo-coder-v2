@@ -34,9 +34,11 @@ class Scores:
             prediction_file = Tools.load_jsonl(prediction_path)
             final_scores.append(self._compute_score(benchmark, mode, prediction_file, passk=1))
 
-        scores_path = FilePathBuilder.create_scores_path(model_name, vectorizer)
-        Tools.dump_jsonl(obj=final_scores, fname=scores_path)
-        logging.info(f"Output scores to: {scores_path}")
+            scores_path = FilePathBuilder.create_scores_path(
+                model_name, vectorizer, benchmark, mode, window_size, slice_size
+            )
+            Tools.dump_jsonl(obj=final_scores, fname=scores_path)
+            logging.info(f"Output scores to: {scores_path}")
 
     def _compute_EM(self, target, predictions):
         target_lines = [line.strip() for line in target.splitlines() if line.strip()]
