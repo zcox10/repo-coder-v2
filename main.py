@@ -40,48 +40,48 @@ def main(
     codegen = Predictions(model=model)
     score = Scores()
 
-    # 1. Build windows for all repositories according to the provided window and slice size
-    # Ouptut each repo (window) at: FilePathBuilder.create_repo_window_path()
-    windows.build_repo_windows(repos=repos, window_sizes=window_sizes, slice_sizes=slice_sizes)
+    # # 1. Build windows for all repositories according to the provided window and slice size
+    # # Ouptut each repo (window) at: FilePathBuilder.create_repo_window_path()
+    # windows.build_repo_windows(repos=repos, window_sizes=window_sizes, slice_sizes=slice_sizes)
 
-    # 2. Generate embeddings for all repository context windows
-    # Ouptut each repo (embeddings) at: FilePathBuilder.create_repo_window_path() -> FilePathBuilder.create_one_gram_vector_path()
-    embeddings.build_repo_window_embeddings(
-        repos=repos, window_sizes=window_sizes, slice_sizes=slice_sizes
-    )
+    # # 2. Generate embeddings for all repository context windows
+    # # Ouptut each repo (embeddings) at: FilePathBuilder.create_repo_window_path() -> FilePathBuilder.create_one_gram_vector_path()
+    # embeddings.build_repo_window_embeddings(
+    #     repos=repos, window_sizes=window_sizes, slice_sizes=slice_sizes
+    # )
 
-    # 3. Builds task-based windows for both the baseline (RG1) and oracle (GT) methods.
-    # Ouptut each repo (window) at: FilePathBuilder.create_search_window_path()
-    windows.build_baseline_windows(
-        benchmarks=benchmarks,
-        modes=baseline_modes,
-        repos=repos,
-        window_sizes=window_sizes,
-        slice_sizes=slice_sizes,
-    )
+    # # 3. Builds task-based windows for both the baseline (RG1) and oracle (GT) methods.
+    # # Ouptut each repo (window) at: FilePathBuilder.create_search_window_path()
+    # windows.build_baseline_windows(
+    #     benchmarks=benchmarks,
+    #     modes=baseline_modes,
+    #     repos=repos,
+    #     window_sizes=window_sizes,
+    #     slice_sizes=slice_sizes,
+    # )
 
-    # 4. Build embeddings from baseline and ground truth windows
-    # Ouptut each repo (embeddings) at: FilePathBuilder.create_search_window_path() -> FilePathBuilder.create_one_gram_vector_path()
-    embeddings.build_baseline_window_embeddings(
-        benchmarks=benchmarks,
-        modes=baseline_modes,
-        repos=repos,
-        window_sizes=window_sizes,
-        slice_sizes=slice_sizes,
-    )
+    # # 4. Build embeddings from baseline and ground truth windows
+    # # Ouptut each repo (embeddings) at: FilePathBuilder.create_search_window_path() -> FilePathBuilder.create_one_gram_vector_path()
+    # embeddings.build_baseline_window_embeddings(
+    #     benchmarks=benchmarks,
+    #     modes=baseline_modes,
+    #     repos=repos,
+    #     window_sizes=window_sizes,
+    #     slice_sizes=slice_sizes,
+    # )
 
-    # 5. Perform similarity search between a query's context and all embeddings in a repo
-    # Output retrieved embeddings at:  FilePathBuilder.create_search_window_path() -> FilePathBuilder.create_retrieval_results_path()
-    sim_search.retrieve_similar_embeddings(
-        vectorizer=vector_type,
-        max_top_k=max_top_k,
-        benchmarks=benchmarks,
-        modes=baseline_modes,
-        repos=repos,
-        window_sizes=window_sizes,
-        slice_sizes=slice_sizes,
-        generation_type="baseline",
-    )
+    # # 5. Perform similarity search between a query's context and all embeddings in a repo
+    # # Output retrieved embeddings at:  FilePathBuilder.create_search_window_path() -> FilePathBuilder.create_retrieval_results_path()
+    # sim_search.retrieve_similar_embeddings(
+    #     vectorizer=vector_type,
+    #     max_top_k=max_top_k,
+    #     benchmarks=benchmarks,
+    #     modes=baseline_modes,
+    #     repos=repos,
+    #     window_sizes=window_sizes,
+    #     slice_sizes=slice_sizes,
+    #     generation_type="baseline",
+    # )
 
     # 6. Build prompts for baseline (RG1 and GT)
     # Output prompts at: FilePathBuilder.create_prompts_path()
@@ -97,29 +97,29 @@ def main(
         max_new_tokens=max_new_tokens,
     )
 
-    # 7. Generate predictions from prompts
-    # Output predictions at: FilePathBuilder.create_predictions_path()
-    codegen.create_predictions(
-        model_name=model_name,
-        vectorizer=vector_type,
-        benchmarks=benchmarks,
-        modes=baseline_modes,
-        window_sizes=window_sizes,
-        slice_sizes=slice_sizes,
-        max_new_tokens=max_new_tokens,
-        batch_size=batch_size,
-    )
+    # # 7. Generate predictions from prompts
+    # # Output predictions at: FilePathBuilder.create_predictions_path()
+    # codegen.create_predictions(
+    #     model_name=model_name,
+    #     vectorizer=vector_type,
+    #     benchmarks=benchmarks,
+    #     modes=baseline_modes,
+    #     window_sizes=window_sizes,
+    #     slice_sizes=slice_sizes,
+    #     max_new_tokens=max_new_tokens,
+    #     batch_size=batch_size,
+    # )
 
-    # 8. Generate score from predictions
-    # Output scores at: FilePathBuilder.create_scores_path()
-    score.build_scores(
-        model_name=model_name,
-        vectorizer=vector_type,
-        benchmarks=benchmarks,
-        modes=baseline_modes,
-        window_sizes=window_sizes,
-        slice_sizes=slice_sizes,
-    )
+    # # 8. Generate score from predictions
+    # # Output scores at: FilePathBuilder.create_scores_path()
+    # score.build_scores(
+    #     model_name=model_name,
+    #     vectorizer=vector_type,
+    #     benchmarks=benchmarks,
+    #     modes=baseline_modes,
+    #     window_sizes=window_sizes,
+    #     slice_sizes=slice_sizes,
+    # )
 
 
 if __name__ == "__main__":
@@ -142,8 +142,8 @@ if __name__ == "__main__":
         benchmarks=[
             Constants.short_api_benchmark,
             Constants.short_line_benchmark,
-            Constants.api_benchmark,
-            Constants.line_benchmark,
+            # Constants.api_benchmark,
+            # Constants.line_benchmark,
         ],
         repos=repos,
         window_sizes=[20],

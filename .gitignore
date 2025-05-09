@@ -3,3 +3,4 @@ test.ipynb
 colab-run.ipynb
 test_colab.ipynb
 .python-version
+__pycache__/
