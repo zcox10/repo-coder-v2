@@ -5,3 +5,5 @@ torch==2.6.0
 scipy==1.15.3
 ipdb==0.13.13
 ipykernel==6.29.5
+matplotlib==3.10.3
+pandas==2.2.3
