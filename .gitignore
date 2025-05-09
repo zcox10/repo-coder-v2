@@ -1,5 +1,5 @@
 .DS_Store
-cache/
 __pycache__/
 test.ipynb
 colab-run.ipynb
+test_colab.ipynb
