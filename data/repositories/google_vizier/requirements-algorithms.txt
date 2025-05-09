@@ -1,0 +1,19 @@
+# Emukit BayesOpt library.
+emukit==0.4.9
+scipy>1.2.3,<1.8.0  # Required downgrade to allow emukit batching behavior.
+
+# For BOCS.
+cvxpy==1.2.1
+cvxopt==1.3.0
+
+# For Harmonica.
+scikit-learn==1.1.2
+
+# For CMA-ES.
+evojax==0.2.15
+
+# For regression utils.
+lightgbm==2.2.3
+
+# For PyGlove.
+pyglove>=0.2.1  # We're always compatible with latest version.
