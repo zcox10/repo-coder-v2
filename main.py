@@ -112,14 +112,14 @@ def main(
 
     # # 8. Generate score from predictions
     # # Output scores at: FilePathBuilder.create_scores_path()
-    # score.build_scores(
-    #     model_name=model_name,
-    #     vectorizer=vector_type,
-    #     benchmarks=benchmarks,
-    #     modes=baseline_modes,
-    #     window_sizes=window_sizes,
-    #     slice_sizes=slice_sizes,
-    # )
+    score.build_scores(
+        model_name=model_name,
+        vectorizer=vector_type,
+        benchmarks=benchmarks,
+        modes=baseline_modes,
+        window_sizes=window_sizes,
+        slice_sizes=slice_sizes,
+    )
 
 
 if __name__ == "__main__":

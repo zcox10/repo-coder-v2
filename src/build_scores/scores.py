@@ -1,6 +1,7 @@
 from typing import List
 import editdistance
 import itertools
+import logging
 
 from src.utils.file_path_builder import FilePathBuilder
 from src.utils.tools import Tools
@@ -35,6 +36,7 @@ class Scores:
 
         scores_path = FilePathBuilder.create_scores_path(model_name, vectorizer)
         Tools.dump_jsonl(obj=final_scores, fname=scores_path)
+        logging.info(f"Output scores to: {scores_path}")
 
     def _compute_EM(self, target, predictions):
         target_lines = [line.strip() for line in target.splitlines() if line.strip()]
