@@ -1,5 +1,6 @@
 import os
 import itertools
+import logging
 from typing import List, Tuple, Dict, Any
 
 from src.utils.constants import Constants
@@ -249,8 +250,9 @@ class Prompts:
 
         final_prompt = prompt_header + "".join(blocks) + "\n" + prompt
 
-        # prompt_token_len = len(self.tokenizer.tokenize(final_prompt))
-        # logging.debug(f"Final prompt length: {prompt_token_len}\n")
+        prompt_token_len = len(self.tokenizer.tokenize(final_prompt))
+        if prompt_token_len >= max_retrieval_length:
+            logging.error(f"Final prompt length: {prompt_token_len} >= {max_retrieval_length}\n")
 
         return final_prompt, chosen_context
 
