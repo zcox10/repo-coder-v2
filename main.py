@@ -129,17 +129,22 @@ if __name__ == "__main__":
     repos = [
         "huggingface_diffusers",
         "nerfstudio-project_nerfstudio",
-        # "awslabs_fortuna",
-        # "huggingface_evaluate",
-        # "google_vizier",
-        # "alibaba_FederatedScope",
-        # "pytorch_rl",
-        # "opendilab_ACE",
+        "awslabs_fortuna",
+        "huggingface_evaluate",
+        "google_vizier",
+        "alibaba_FederatedScope",
+        "pytorch_rl",
+        "opendilab_ACE",
     ]
 
     main(
         model_name="Salesforce/codegen-350M-mono",
-        benchmarks=[Constants.short_api_benchmark, Constants.short_line_benchmark],
+        benchmarks=[
+            Constants.short_api_benchmark,
+            Constants.short_line_benchmark,
+            Constants.api_benchmark,
+            Constants.line_benchmark,
+        ],
         repos=repos,
         window_sizes=[20],
         slice_sizes=[2],
