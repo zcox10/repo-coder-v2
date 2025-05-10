@@ -5,7 +5,6 @@ import logging
 
 from src.utils.file_path_builder import FilePathBuilder
 from src.utils.tools import Tools
-from src.utils.constants import Constants
 
 
 class Scores:
@@ -19,10 +18,10 @@ class Scores:
         window_sizes: List[int],
         slice_sizes: List[int],
     ):
-        final_scores = []
         for benchmark, mode, window_size, slice_size in itertools.product(
             benchmarks, modes, window_sizes, slice_sizes
         ):
+            final_scores = []
             prediction_path = FilePathBuilder.create_predictions_path(
                 model_name,
                 vectorizer,
