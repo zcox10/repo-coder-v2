@@ -69,6 +69,7 @@ class Predictions:
 
         # Load JSONL file containing prompts
         lines = Tools.load_jsonl(prompt_path)
+        # lines = lines[:10]
 
         # Append newline to each prompt to maintain separation
         prompts = [f"{line['prompt']}\n" for line in lines]

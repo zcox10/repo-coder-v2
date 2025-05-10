@@ -17,8 +17,9 @@ class Constants:
 
     # Evaluation modes
     gt: str = "gt"  # Ground truth
-    rg: str = "r-g"  # Retrieve-and-generate
-    rgrg: str = "r-g-r-g"  # Two-stage RAG (RepoCoder)
+    rg: str = "rag"  # Retrieve-and-generate
+    rgrg: str = "rag-rag"  # Two-stage RAG (RepoCoder)
+    nrg: str = "no-rag"  # No RAG component
 
     # Base level directories
     base_repos_dir: str = "data/repositories"
