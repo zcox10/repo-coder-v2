@@ -70,6 +70,11 @@ class WindowUtils:
             start_line = max(context_start_lineno, line_no - window_size)
             end_line = line_no  # Exclude the line being predicted
 
+        # For No-RAG windows and generating prompts
+        elif mode == Constants.nrg:
+            start_line = max(context_start_lineno, line_no - window_size)
+            end_line = line_no
+
         # Grouth truth window method
         elif mode == Constants.gt:
             delta_size = window_size // 2

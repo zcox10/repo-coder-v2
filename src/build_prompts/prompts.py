@@ -235,6 +235,9 @@ class Prompts:
 
         # Prioritizes top-most relevant items last for prepending
         for retrieved_context in top_k_context:
+            if mode == Constants.nrg:
+                break
+
             # Prepare arguments for the block function
             kwargs = {"retrieved_context": retrieved_context}
             if mode == Constants.rg:
@@ -255,6 +258,38 @@ class Prompts:
             logging.error(f"Final prompt length: {prompt_token_len} >= {max_retrieval_length}\n")
 
         return final_prompt, chosen_context
+
+    def _make_block(self, retrieved_context: Tuple[Dict[str, Any], float]) -> Tuple[str, int]:
+        """
+        Formats a single context block into a comment-based structure suitable for prompt prepending.
+        Intended for non-overlapping (GT mode) context that does not intersect the task's location.
+
+        Returns:
+            A tuple of (formatted block string, token count).
+        """
+
+        content, _ = retrieved_context
+        metadata = content["metadata"]
+
+        # Format file paths
+        f_paths = ["/".join(x["fpath_tuple"][1:]) for x in metadata]
+        f_paths_str = "\n".join([f"# {f_path}" for f_path in f_paths])
+
+        # Convert context code into comments
+        comment_lines = [f"# {line}" for line in content["context"].splitlines()]
+
+        block = "\n".join(
+            [
+                "# the below code fragment can be found in:",
+                f_paths_str,
+                self.separator,
+                *comment_lines,
+                self.separator,
+                "",
+            ]
+        )
+        token_len = len(self.tokenizer.tokenize(block))
+        return block, token_len
 
     def _make_block(self, retrieved_context: Tuple[Dict[str, Any], float]) -> Tuple[str, int]:
         """
