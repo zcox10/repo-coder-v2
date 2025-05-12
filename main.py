@@ -97,29 +97,29 @@ def main(
         max_new_tokens=max_new_tokens,
     )
 
-    # # 7. Generate predictions from prompts
-    # # Output predictions at: FilePathBuilder.create_predictions_path()
-    # codegen.create_predictions(
-    #     model_name=model_name,
-    #     vectorizer=vector_type,
-    #     benchmarks=benchmarks,
-    #     modes=baseline_modes,
-    #     window_sizes=window_sizes,
-    #     slice_sizes=slice_sizes,
-    #     max_new_tokens=max_new_tokens,
-    #     batch_size=batch_size,
-    # )
+    # 7. Generate predictions from prompts
+    # Output predictions at: FilePathBuilder.create_predictions_path()
+    codegen.create_predictions(
+        model_name=model_name,
+        vectorizer=vector_type,
+        benchmarks=benchmarks,
+        modes=baseline_modes,
+        window_sizes=window_sizes,
+        slice_sizes=slice_sizes,
+        max_new_tokens=max_new_tokens,
+        batch_size=batch_size,
+    )
 
-    # # 8. Generate score from predictions
-    # # Output scores at: FilePathBuilder.create_scores_path()
-    # score.build_scores(
-    #     model_name=model_name,
-    #     vectorizer=vector_type,
-    #     benchmarks=benchmarks,
-    #     modes=baseline_modes,
-    #     window_sizes=window_sizes,
-    #     slice_sizes=slice_sizes,
-    # )
+    # 8. Generate score from predictions
+    # Output scores at: FilePathBuilder.create_scores_path()
+    score.build_scores(
+        model_name=model_name,
+        vectorizer=vector_type,
+        benchmarks=benchmarks,
+        modes=baseline_modes,
+        window_sizes=window_sizes,
+        slice_sizes=slice_sizes,
+    )
 
 
 if __name__ == "__main__":
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     ]
 
     main(
-        model_name="Salesforce/codegen-6B-nl",
+        model_name="Salesforce/codegen-350M-mono",
         benchmarks=[
             Constants.short_api_benchmark,
             Constants.short_line_benchmark,
